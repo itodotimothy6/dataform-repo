@@ -52,7 +52,7 @@ CREATE OR REPLACE EXTERNAL TABLE
     Loan STRING,
     Contact STRING,
     Name STRING,
-    Last_Name STRING,
+    Last_Name STRING
      )
 WITH CONNECTION `${dataform.projectConfig.vars.connection_name}` OPTIONS( uris = ['gs://${dataform.projectConfig.vars.sample_data_bucket}/bank_info.csv'],
     max_staleness = INTERVAL 8 HOUR,
