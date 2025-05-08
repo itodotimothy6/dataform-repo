@@ -1,0 +1,60 @@
+config {
+    tags: ["ddl"],
+    hasOutput: true,
+    description: "An external bigLake table for storing bank info files",
+    columns: {
+        uuid: "uuid information",
+        account_number: "account number",
+        age: "age",
+        Experience: "experience", 
+        Income: "income", 
+        ZIP_Code: "zip code", 
+        Family: "Family" ,
+        Education: "Education" ,
+        Mortgage: "Mortgage" ,
+        Personal_Loan: "Personal_Loan", 
+        Securities_Account: "Securities_Account", 
+        CD_Account: "CD_Account", 
+        Online: "Online" ,
+        Credit_Card: "Credit_Card" ,
+        Job: "Job" ,
+        Marital: "Marital", 
+        Housing: "Housing" ,
+        Loan: "Loan" ,
+        Contact: "Contact" ,
+        Name: "Name" ,
+        Last_Name: "Last_Name"
+    },
+    schema: `${dataform.projectConfig.vars.dataset_id_landing}`,
+    database: `${dataform.projectConfig.vars.dataset_projd ectid_landing}`,
+    name: "bank_info"
+}
+
+CREATE OR REPLACE EXTERNAL TABLE
+  `${dataform.projectConfig.vars.dataset_projectid_landing}.${dataform.projectConfig.vars.dataset_id_landing}`.bank_info ( 
+    uuid STRING,
+    account_number STRING,
+    age STRING,
+    Experience STRING,
+    Income STRING,
+    ZIP_Code STRING,
+    Family STRING,
+    Education STRING,
+    Mortgage STRING,
+    Personal_Loan STRING,
+    Securities_Account STRING,
+    CD_Account STRING,
+    Online STRING,
+    Credit_Card STRING,
+    Job STRING,
+    Marital STRING,
+    Housing STRING,
+    Loan STRING,
+    Contact STRING,
+    Name STRING,
+    Last_Name STRING
+     )
+WITH CONNECTION `${dataform.projectConfig.vars.connection_name}` OPTIONS( uris = ['gs://${dataform.projectConfig.vars.sample_data_bucket}/bank_info.csv'],
+    max_staleness = INTERVAL 8 HOUR,
+    metadata_cache_mode = 'AUTOMATIC',
+    format = 'CSV' )
