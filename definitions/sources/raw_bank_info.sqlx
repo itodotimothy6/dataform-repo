@@ -23,7 +23,7 @@ config {
         Loan: "Loan" ,
         Contact: "Contact" ,
         Name: "Name" ,
-        Last_Name: "Last_Name" ,
+        Last_Name: "Last_Name"
     },
     schema: `${dataform.projectConfig.vars.dataset_id_landing}`,
     database: `${dataform.projectConfig.vars.dataset_projd ectid_landing}`,
